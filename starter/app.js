@@ -8,7 +8,7 @@
     - The first player to reach 100 points on GLOBAL score wins the game
 
     */
-    var scores, roundScores, activePlayer, gamePlaying, previousSix, winLimit; 
+    var scores, roundScore, roundScore2, activePlayer, gamePlaying, previousSixD1, previousSixD2, winLimit; 
     // that is d#larations (DON'T need to define them yet)
     // Those are GLOBAL s#ope vars
 
@@ -18,7 +18,7 @@
     //or not
    
 
-    winLimit = 20;
+    winLimit = 20; // default limit
     
     init();
     /*
@@ -139,34 +139,53 @@
 
         //1. Rand. nr.
         var dice = Math.floor(Math.random()*6)+1;
+        var dice2 = Math.floor(Math.random()*6)+1;
 
         //2. Display the result
         var diceDOM = document.querySelector('.dice'); // in this way we dont need to make the sele#tion over again
         diceDOM.style.display = 'block'; 
+            
+        var dice2DOM = document.querySelector('.dice2'); 
+        dice2DOM.style.display = 'block'; 
+            
         // we need to bring the style ba#k to blo#k(???) #oz we did:
         // document.querySelector('.dice').style.display = 'none'; --> we hid it
         // 
         //in #ss we want to display it as a "blo#k"
         diceDOM.src = 'dice-' + dice + '.png';
+        dice2DOM.src = 'dice-' + dice2 + '.png';
 
 
         //3. Update the round s#ore if the rolled nr. was NOT 1
-        if(dice !== 1){ // != operator performs type #oertion(??), AND !== doesn not do type #oertion
+        if(dice !== 1 && dice2 !== 1 ){ // != operator performs type #oertion(??), AND !== doesn not do type #oertion
             //Add s#ore
             roundScore += dice;
-            document.querySelector('#current-' + activePlayer).textContent = roundScore;
+            roundScore2 += dice2;
+            document.querySelector('#current-' + activePlayer).textContent = roundScore + roundScore2;
             if (dice == 6){
-                if(previousSix){
+                if(previousSixD1){
                        // absolute score should be 0
                         scores[activePlayer] = 0; // when two 6es in row the total score becomes 0
                         nextPlayer();
                 
             } else {
-                previousSix = true; // flag indicates that first '6' has occured
+                previousSixD1 = true; // flag indicates that first '6' has occured
             }
                 
+            }
+            
+            
+            
+            if (dice2 == 6){
+                if(previousSixD2){
+                       // absolute score should be 0
+                        scores[activePlayer] = 0; // when two 6es in row the total score becomes 0
+                        nextPlayer();
                 
-                
+            } else {
+                previousSixD2 = true; // flag indicates that first '6' has occured
+            }
+                  
             }
          
             
@@ -229,7 +248,7 @@
         
         
     //### add players #urrent s#ore to players global s#ore
-    scores[activePlayer] += roundScore;
+    scores[activePlayer] += roundScore + roundScore2;
 
 
     //### Update the UI
@@ -242,6 +261,7 @@
          
          // a##essing #ss
          document.querySelector('.dice').style.display = 'none';
+         document.querySelector('.dice2').style.display = 'none';
          
          // we will a##ess #ss and apply 'winner' #lass to the player that has won
          document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner'); // adds winner #lass
@@ -264,9 +284,11 @@
 
 
 function nextPlayer() {
-    previousSix = false; // indicates that '6' has not occured
+    previousSixD1 = false; // indicates that '6' has not occured
+    previousSixD2 = false; 
     
     document.querySelector('.dice').style.display = 'none'; // after hitting 'hold' di#e should be hidden 
+    document.querySelector('.dice2').style.display = 'none'; // after hitting 'hold' di#e should be hidden 
 
     //!!! toggle 111111111111111
     // 'toggle' removes 'a#tive' #lass if it is pressent and adds if it is missing
@@ -279,6 +301,7 @@ function nextPlayer() {
         
     
     roundScore = 0; // zeroing round s#ore
+    roundScore2 = 0;
     activePlayer === 0 ? activePlayer = 1 : activePlayer = 0; // #hanging #urrent player
     
 }
@@ -291,13 +314,16 @@ document.querySelector('.btn-new').addEventListener('click', init); // passing i
 
 function init() {
     scores = [0, 0];
-    previousSix = false;
+    previousSixD1 = false;
+    previousSixD2 = false;
     activePlayer = 0;
     roundScore = 0;
+    roundScore2 = 0;
 
     gamePlaying = true;
 
     document.querySelector('.dice').style.display = 'none';  
+    document.querySelector('.dice2').style.display = 'none';
     
     document.getElementById('score-0').textContent = '0';
     document.getElementById('score-1').textContent = '0';
