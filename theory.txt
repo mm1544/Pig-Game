@@ -1,0 +1,173 @@
+# DOM: Document Object Model
+
+# The DOM is used to connect webpages to scripts like JavaScript
+
+# For each HTML box, there is an object in the DOM that we can access and interact with.
+
+NOTA BENE: JS and DOM are two diffrent things
+
+RECAP: METHOD is a function attached to some object
+
+In this case that OBJECT is a document object, AND this object gives the access to the DOM.
+
+
+!!!!!!!
+html webpage content is stored in DOM, which can then be accessed and manipulated by the JS.
+
+
+##########################
+HTML and CSS crash course
+
+HTML element can have ATRIBUTES:
+
+<div class="..." id="...">Player 1</div>
+this is a class atribute "class" and id atribute "id". There are lots of diferent atributes.
+
+
+class atribute alloves us to give to the certain element a name.
+
+id alloves also to give a name (??), but the diference is that id has to be unique. Class name can be used over and over again.
+
+HTML is always divided into two parts:
+
+1. the header
+and 2. the body
+
+
+The body contains the visible content of webpage. 
+
+The header contains additional information about the webpage.
+As well in header we can e.g. import in our code a custom font from google fonts.
+As well in heder we connect html file and css style sheet.
+
+
+
+In css we write RULES to style our webpage.
+
+
+In the way we connect the HTML with CSS is by (usually) using class names:
+
+eg.:
+
+.player-name {
+    font-size: 40px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 100;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+we as well can use id or other selectors, but the most common one is the class selector.
+
+
+So the rule ".player-name" styles all the elements that has the class "player-name".
+
+
+//////////////////////
+/////////////////////
+
+eg.
+
+body {
+    background-image: linear-gradient(rgba(62, 20, 20, 0.4), rgba(62, 20, 20, 0.4)), url(back.jpg);
+    background-size: cover;
+    background-position: center;
+    font-family: Lato;
+    font-weight: 300;
+    position: relative;
+    height: 100vh;
+    color: #555;
+}
+
+<-- this is a TYPE selector, because it selects all the elements with a type of "body". I.E. it selects the Body of our webpage.
+
+
+
+/////////////////
+////////////////
+We have UNIVERSAL selector which selects all of the elements of the webpage:
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+
+
+////////////////
+///////////////
+S4L49
+
+EVENT #an only be pro#essed or handled as soon as the exe#ution sta#k is empty. 
+//THAT MEANS THAT: ALL THE F-IONS HAVE RETURNED
+
+// Besides exe#ution sta#k we have 'message queue' in JS engine
+//this is where the events, that happen in the browser are put. And they sit there waiting to be pr##essed.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
