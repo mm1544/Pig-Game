@@ -77,7 +77,7 @@
         }
 
     //### #he#k if player won the game
-     if(scores[activePlayer] >= winLimit) {
+     if(scores[activePlayer] >= winningScore) {
          document.getElementById('name-' + activePlayer).textContent = 'WINNER!';
          
          // a##essing #ss
