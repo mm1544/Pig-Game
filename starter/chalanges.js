@@ -5,7 +5,7 @@
     
     init();
 
-var lastDice;
+    var lastDice;
 
     document.querySelector('.btn-roll').addEventListener('click', function() {
 
