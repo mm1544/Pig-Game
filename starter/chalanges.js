@@ -5,6 +5,8 @@
     
     init();
 
+var lastDice;
+
     document.querySelector('.btn-roll').addEventListener('click', function() {
 
         if(gamePlaying) {
@@ -20,29 +22,24 @@
 
 
         //3. Update the round s#ore if the rolled nr. was NOT 1
-        if(dice !== 1){ 
+        if(dice === 6 && lastDice === 6) {
+            // Player looses s#ore
+            scores[activePlayer] = 0;
+            document.getElementById('score-' + activePlayer).textContent = 0; // updates UI
+            nextPlayer();
+            
+            
+        }else if(dice !== 1){ 
             roundScore += dice;
             document.querySelector('#current-' + activePlayer).textContent = roundScore;
-            if (dice == 6){
-                if(previousSix){
-                       // absolute score should be 0
-                        scores[activePlayer] = 0; 
-                        nextPlayer();
-                
-            } else {
-                previousSix = true; 
-            }
-                
-                
-                
-            }
          
-            
         } else {
         
             nextPlayer();
 
         }
+            
+        lastDice = dice;
             
       }
     });
@@ -65,6 +62,19 @@
     //### Update the UI
     document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
         
+    
+    var input = document.querySelector('.final-score').value;
+    
+    var winningScore;
+        
+    
+    // Undefined, 0 null or "" are COERCED to false
+    // Anything else is COERCED to true
+        if(input) { // if there is an imput
+            winningScore = input;
+        } else {
+            winningScore = 100;
+        }
 
     //### #he#k if player won the game
      if(scores[activePlayer] >= winLimit) {
